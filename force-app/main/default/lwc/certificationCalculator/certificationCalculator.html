@@ -1,23 +1,50 @@
 <template>
 	<lightning-card title="Salesforce Certification Calculator">
-		<lightning-button label="Calculate" slot="actions"></lightning-button>
+		<lightning-button 		label="Calculate" 
+								slot="actions" 
+								onclick={calculateScore}>
+		</lightning-button>
 		<p class="slds-var-p-horizontal_small">Use this to calculate your PD1 score</p>
 		<div class="slds-var-p-around_x-small lgc-bg">
-			<lightning-input type="number" label="Developer Fundamentals" placeholder="Enter Your Score" maxlength="3">
+			<lightning-input 	type="number" 
+								label="Developer Fundamentals" 
+								placeholder="Enter Your Score" 
+								maxlength="3" 
+								value={developerFundamentals}
+								onchange={onDeveloperFundamentalsChange}>
 			</lightning-input>
 		</div>
 		<div class="slds-var-p-around_x-small lgc-bg">
-			<lightning-input type="number" label="Process Automation and Logic" placeholder="Enter Your Score" maxlength="3">
+			<lightning-input 	type="number" 
+								label="Process Automation and Logic" 
+								placeholder="Enter Your Score" 
+								maxlength="3" 
+								value={processAutomationAndLogic}
+								onchange={onProcessAutomationAndLogicChange}>
 			</lightning-input>
 		</div>
 		<div class="slds-var-p-around_x-small lgc-bg">
-			<lightning-input type="number" label="User Interface" placeholder="Enter Your Score" maxlength="3">
+			<lightning-input 	type="number" 
+								label="User Interface" 
+								placeholder="Enter Your Score" 
+								maxlength="3" 
+								value={userInterface}
+								onchange={onUserInterfaceChange}>
 			</lightning-input>
 		</div>
 		<div class="slds-var-p-around_x-small lgc-bg">
-			<lightning-input type="number" label="Testing, Debugging, and Deployment" placeholder="Enter Your Score"
-				maxlength="3"></lightning-input>
+			<lightning-input 	type="number" 
+								label="Testing, Debugging, and Deployment" 
+								placeholder="Enter Your Score"
+								maxlength="3" 
+								value={testingDebuggingAndDeployment}
+								onchange={onTestingDebuggingAndDeploymentChange}>
+			</lightning-input>
 		</div>
-		<p slot="footer" onchange={handleChange}>{scoreMessage}</p>
+		<lightning-textarea 	name="scoreMessage"
+								slot="footer" 
+								disabled value={scoreMessage}
+								label="Score Message">
+		</lightning-textarea>
 	</lightning-card>
 </template>
