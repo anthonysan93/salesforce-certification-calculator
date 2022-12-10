@@ -1,7 +1,18 @@
 import { LightningElement } from 'lwc';
 
+//Storage of Variables
+let passFail = ''
+
 export default class CertificationCalculator extends LightningElement {
-     
+    scoreMessage (){
+        if(passFail === 'Pass'){
+            return "Congrats you passed!";
+        }else if(passFail === 'Fail'){
+            return 'You will get it next time!';
+        }else{
+            return 'Awaiting results...';
+        }
+    }   
 }
 
 // Storage of Variables
@@ -30,14 +41,3 @@ let testingDebuggingAndDeployment;
 
 //inputing the entire if else if statement into 
 //the bind variable instead of caculating?
-/*finalScore = 65;
-
-passFail (){
-    if(finalScore >= 68){
-        return "Congrats you passed!";
-    }else if(finalScore < 68){
-        return 'You will get it next time!';
-    }else{
-        return 'Awaiting results...';
-    }
-}*/   

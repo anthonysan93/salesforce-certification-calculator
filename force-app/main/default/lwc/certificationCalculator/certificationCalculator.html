@@ -3,21 +3,21 @@
 		<lightning-button label="Calculate" slot="actions"></lightning-button>
 		<p class="slds-var-p-horizontal_small">Use this to calculate your PD1 score</p>
 		<div class="slds-var-p-around_x-small lgc-bg">
-			<lightning-input type="text" label="Developer Fundamentals" placeholder="Enter Your Score" maxlength="3">
+			<lightning-input type="number" label="Developer Fundamentals" placeholder="Enter Your Score" maxlength="3">
 			</lightning-input>
 		</div>
 		<div class="slds-var-p-around_x-small lgc-bg">
-			<lightning-input type="text" label="Process Automation and Logic" placeholder="Enter Your Score" maxlength="3">
+			<lightning-input type="number" label="Process Automation and Logic" placeholder="Enter Your Score" maxlength="3">
 			</lightning-input>
 		</div>
 		<div class="slds-var-p-around_x-small lgc-bg">
-			<lightning-input type="text" label="User Interface" placeholder="Enter Your Score" maxlength="3">
+			<lightning-input type="number" label="User Interface" placeholder="Enter Your Score" maxlength="3">
 			</lightning-input>
 		</div>
 		<div class="slds-var-p-around_x-small lgc-bg">
-			<lightning-input type="text" label="Testing, Debugging, and Deployment" placeholder="Enter Your Score"
+			<lightning-input type="number" label="Testing, Debugging, and Deployment" placeholder="Enter Your Score"
 				maxlength="3"></lightning-input>
 		</div>
-		<p slot="footer" onchange={handleChange}>{passFail}</p>
+		<p slot="footer" onchange={handleChange}>{scoreMessage}</p>
 	</lightning-card>
 </template>
