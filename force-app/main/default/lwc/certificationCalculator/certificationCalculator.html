@@ -11,6 +11,8 @@
 								placeholder="Enter Your Score" 
 								maxlength="3" 
 								value={developerFundamentals}
+								max='100'
+								message-when-range-overflow='Please enter between 1-100'
 								onchange={onDeveloperFundamentalsChange}>
 			</lightning-input>
 		</div>
@@ -20,6 +22,8 @@
 								placeholder="Enter Your Score" 
 								maxlength="3" 
 								value={processAutomationAndLogic}
+								max='100'
+								message-when-range-overflow='Please enter between 1-100'
 								onchange={onProcessAutomationAndLogicChange}>
 			</lightning-input>
 		</div>
@@ -29,6 +33,8 @@
 								placeholder="Enter Your Score" 
 								maxlength="3" 
 								value={userInterface}
+								max='100'
+								message-when-range-overflow='Please enter between 1-100'
 								onchange={onUserInterfaceChange}>
 			</lightning-input>
 		</div>
@@ -38,6 +44,8 @@
 								placeholder="Enter Your Score"
 								maxlength="3" 
 								value={testingDebuggingAndDeployment}
+								max='100'
+								message-when-range-overflow='Please enter between 1-100'
 								onchange={onTestingDebuggingAndDeploymentChange}>
 			</lightning-input>
 		</div>
