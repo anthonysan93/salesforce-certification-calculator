@@ -38,9 +38,11 @@ export default class CertificationCalculator extends LightningElement {
                     Math.round(this.userInterface * userInterfaceWeight) +
                     Math.round(this.testingDebuggingAndDeployment * testingDebuggingAndDeploymentWeight)
         //This checks the score retrieved with the passing score and outputs a sentence. 
-        if (score >= passingScore) {
+        if (score >= passingScore && score < 101) {
             this.scoreMessage = `Pass! Your overall score is ${score}`;
-        } else
+        }else if(score >= 101){
+            this.scoreMessage = 'Please enter a valid value';
+        }else
             this.scoreMessage = `Fail your overall score was ${score}`;
     }
 }
