@@ -1,6 +1,7 @@
 //TO-DO make calculate button and calculation for pd2
 
 import { LightningElement } from 'lwc';
+import LightningAlert from 'lightning/alert';
 import PlatformDeveloper1 from './PlatformDeveloper1.html';
 import SelectorPage from './SelectorPage.html';
 import PlatformDeveloper2 from './PlatformDeveloper2.html';
@@ -54,24 +55,37 @@ export default class CertificationCalculator extends LightningElement {
 
     //Retrieves the number that is inputted for use in the back end
     //Platform Developer 1
-    onDeveloperFundamentalsChange(event){
-         this.developerFundamentals = event.target.value;
+    onDeveloperFundamentalsChange(e){
+         this.developerFundamentals = e.target.value;
      }
-     onProcessAutomationAndLogicChange(event){
-         this.processAutomationAndLogic = event.target.value;
+     onProcessAutomationAndLogicChange(e){
+         this.processAutomationAndLogic = e.target.value;
      }
-     onUserInterfaceChange(event){
-         this.userInterface = event.target.value;
+     onUserInterfaceChange(e){
+         this.userInterface = e.target.value;
      }
-     onTestingDebuggingAndDeploymentChange(event){
-         this.testingDebuggingAndDeployment = event.target.value;
+     onTestingDebuggingAndDeploymentChange(e){
+         this.testingDebuggingAndDeployment = e.target.value;
      }
      //Platform Developer 2
-     onadvancedDeveloperFundamentalsChange(event){
-        this.advancedDeveloperFundamentals = event.target.value;
+     onAdvancedDeveloperFundamentalsChange(e){
+        this.advancedDeveloperFundamentals = e.target.value;
+     }
+     onProcessAutomationLogicAndIntegrationChange(e){
+        this.processAutomationLogicAndIntegration = e.target.value;
+     }
+     onUserInterfaceChange2(e){
+        this.userInterface2 = e.target.value;
+     }
+     onTestingDebuggingAndDeploymentChange2(e){
+        this.testingDebuggingAndDeployment2 = e.target.value;
+     }
+     onPerformanceChange(e){
+        this.performance = e.target.value;
      }
 
     //This calculates the score based on const and inputted variables
+    //This calculates the score for Platform Developer 1
     calculateScorePlatformDeveloper1 () {
     
 
@@ -79,18 +93,18 @@ export default class CertificationCalculator extends LightningElement {
         //Storage of Variables
         const questionCount = 60;
         const passingScore = 68;
-        const developerFundamentalsWeight = .23
+        const developerFundamentalsWeight = .23;
         const processAutomationAndLogicWeight = .30;
         const userInterfaceWeight = .25;
         const testingDebuggingAndDeploymentWeight = .22;
         const developerFunadmentalsQuestionsCount =
-        Math.round(questionCount * developerFundamentalsWeight);
+            Math.round(questionCount * developerFundamentalsWeight);
         const processAutomationAndLogicQuestionCount = 
-        Math.round(questionCount * processAutomationAndLogicWeight);
+            Math.round(questionCount * processAutomationAndLogicWeight);
         const userInterfaceQuestionCount = 
-        Math.round(questionCount * userInterfaceWeight);
+            Math.round(questionCount * userInterfaceWeight);
         const testingDebuggingAndDeploymentQuestionCount = 
-        Math.round(questionCount * testingDebuggingAndDeploymentWeight);
+            Math.round(questionCount * testingDebuggingAndDeploymentWeight);
 
         let developerFundamentalsScore = 
             Math.round(this.developerFundamentals  * developerFundamentalsWeight);
@@ -116,6 +130,7 @@ export default class CertificationCalculator extends LightningElement {
             `For Testing Debugging and Deployment you got ${testingDebuggingAndDeploymentCorrectCount} out of ${testingDebuggingAndDeploymentQuestionCount} correct.`;
 
         let score = developerFundamentalsScore + processAutomationAndLogicScore + userInterfaceScore + testingDebuggingAndDeploymentScore;
+
         //This checks the score retrieved with the passing score and outputs a sentence. 
         //This if statement checks for invalid values
         if(this.developerFundamentals > 100 ||
@@ -126,6 +141,83 @@ export default class CertificationCalculator extends LightningElement {
             this.userInterface < 0 ||
             this.testingDebuggingAndDeployment > 100 ||
             this.testingDebuggingAndDeployment < 0){
+                this.scoreMessage = INVALID_MESSAGE;
+                this.sectionQuestionCount = INVALID_MESSAGE;
+            }else{
+                //This one checks if it is passing or failing and displays the appropriate score.
+                if (score >= passingScore) {
+                    this.scoreMessage = `Pass! Your overall score is ${score}`;
+                    this.sectionQuestionCount = sectionBreakdown; 
+                }else{
+                    this.scoreMessage = `Fail your overall score was ${score}`;
+                    this.sectionQuestionCount = sectionBreakdown;
+            }
+        }
+    }
+    //This calculates the score for Platform Developer 2
+    calculateScorePlatformDeveloper2 () {
+
+        //Storage of Variables
+        const questionCount = 60;
+        const passingScore = 70;
+        const advancedDeveloperFundamentalsWeight = .15;
+        const processAutomationLogicAndIntegrationWeight = .27;
+        const userInterface2Weight = .20;
+        const testingDebuggingAndDeployment2Weight = .20;
+        const performanceWeight = .18;
+        const advancedDeveloperFundamentalsQuestionsCount =
+            Math.round(questionCount * advancedDeveloperFundamentalsWeight);
+        const processAutomationLogicAndIntegrationQuestionCount = 
+            Math.round(questionCount * processAutomationLogicAndIntegrationWeight);
+        const userInterface2QuestionCount = 
+            Math.round(questionCount * userInterface2Weight);
+        const testingDebuggingAndDeployment2QuestionCount = 
+            Math.round(questionCount * testingDebuggingAndDeployment2Weight);
+        const performanceQuestionCount =
+            Math.round(questionCount * performanceWeight);
+
+        let advancedDeveloperFundamentalsScore = 
+            Math.round(this.advancedDeveloperFundamentals  * advancedDeveloperFundamentalsWeight);
+        let processAutomationLogicAndIntegrationScore = 
+            Math.round(this.processAutomationLogicAndIntegration * processAutomationLogicAndIntegrationWeight);
+        let userInterface2Score = 
+            Math.round(this.userInterface2 * userInterface2Weight);
+        let testingDebuggingAndDeployment2Score =
+            Math.round(this.testingDebuggingAndDeployment2 * testingDebuggingAndDeployment2Weight);
+        let performanceScore =
+            Math.round(this.performance * performanceWeight);
+
+        let advancedDeveloperFundamentalsQuestionsCorrectCount = 
+            Math.round(this.advancedDeveloperFundamentals / 100 * advancedDeveloperFundamentalsQuestionsCount);
+        let processAutomationLogicAndIntegrationCorrectCount = 
+            Math.round(this.processAutomationLogicAndIntegration / 100 * processAutomationLogicAndIntegrationQuestionCount);
+        let userInterface2CorrectCount = 
+            Math.round(this.user2Interface / 100 * userInterface2QuestionCount);
+        let testingDebuggingAndDeployment2CorrectCount = 
+            Math.round(this.testingDebuggingAndDeployment2 / 100 * testingDebuggingAndDeployment2QuestionCount);
+        let performanceCorrectCount = 
+            Math.round(this.performance / 100 * performanceQuestionCount);
+        let sectionBreakdown = 
+            `For Developer Fundamentals you got ${advancedDeveloperFundamentalsQuestionsCorrectCount} out of ${advancedDeveloperFundamentalsQuestionsCount} correct.` + '\n' + 
+            `For Process Automation and Logic you got ${processAutomationLogicAndIntegrationCorrectCount} out of ${processAutomationLogicAndIntegrationQuestionCount} correct.` + '\n' +
+            `For User Interface you got ${userInterface2CorrectCount} out of ${userInterface2QuestionCount} correct.` + '\n' +
+            `For Testing Debugging and Deployment you got ${testingDebuggingAndDeployment2CorrectCount} out of ${testingDebuggingAndDeployment2QuestionCount} correct.` + '\n' +
+            `For Performance you got ${performanceCorrectCount} out of ${performanceQuestionCount} correct.`;
+
+        let score = advancedDeveloperFundamentalsScore + processAutomationLogicAndIntegrationScore + userInterface2Score + testingDebuggingAndDeployment2Score + performanceScore;
+        
+        //This checks the score retrieved with the passing score and outputs a sentence. 
+        //This if statement checks for invalid values
+        if(this.advancedDeveloperFundamentals > 100 ||
+            this.advancedDeveloperFundamentals < 0 ||
+            this.processAutomationLogicAndIntegration > 100 ||
+            this.processAutomationLogicAndIntegration < 0 ||
+            this.userInterface2 > 100 ||
+            this.userInterface2 < 0 ||
+            this.testingDebuggingAndDeployment2 > 100 ||
+            this.testingDebuggingAndDeployment2 < 0 ||
+            this.performance > 100 ||
+            this.performance < 0){
                 this.scoreMessage = INVALID_MESSAGE;
                 this.sectionQuestionCount = INVALID_MESSAGE;
             }else{
