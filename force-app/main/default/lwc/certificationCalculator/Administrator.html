@@ -1,0 +1,103 @@
+<template>
+	<lightning-card title="Salesforce Certification Calculator">
+	<lightning-button 			slot="actions" 
+								label="Main Page"
+								onclick={showSelectorPage}
+								variant="destructive-text">		
+	</lightning-button>
+	<lightning-card title="Administrator">
+		<lightning-button 		label="Calculate" 
+								slot="actions" 
+								onclick={calculateScoreAdministrator}>
+		</lightning-button>
+		<p class="slds-var-p-horizontal_small">Use this to calculate your PD2 score</p>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Configuration and Setup" 
+								maxlength="3" 
+								value={configurationAndSetup}
+								max='100'
+								min="0"
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onConfigurationAndSetupChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Object Manager and Lightning App Builder" 
+								maxlength="3" 
+								value={objectManagerAndLightningAppBuilder}
+								max='100'
+								min="0"
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onObjectManagerAndLightningAppBuilderChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Sales and Marketing Applications" 
+								maxlength="3" 
+								value={salesAndMarketingApplications}
+								max='100'
+								min="0"
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onSalesAndMarketingApplicationsChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Service and Support Applications" 
+								maxlength="3" 
+								value={serviceAndSupportApplications}
+								max='100'
+								min="0"
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onServiceAndSupportApplicationsChange}>
+			</lightning-input>
+		</div>
+        <div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Productivity and Collaboration" 
+								maxlength="3" 
+								value={productivityAndCollaboration}
+								max='100'
+								min="0"
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onproductivityAndCollaborationChange}>
+			</lightning-input>
+		</div>
+        <div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Data and Analytics Management" 
+								maxlength="3" 
+								value={dataAndAnalyticsManagement}
+								max='100'
+								min="0"
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onDataAndAnalyticsManagementChange}>
+			</lightning-input>
+		</div>
+        <div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Workflow/Process Automation" 
+								maxlength="3" 
+								value={workflowProcessAutomation}
+								max='100'
+								min="0"
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onWorkflowProcessAutomationChange}>
+			</lightning-input>
+		</div>
+		<lightning-textarea 	name="scoreMessage"
+								slot="footer" 
+								readonly value={scoreMessage}
+								label="Score Message">
+		</lightning-textarea>
+		<lightning-textarea 	name="sectionQuestionCount"
+								slot="footer" 
+								readyonly value={sectionQuestionCount}
+								label="Section Breakdown">
+		</lightning-textarea>
+	</lightning-card>
+</lightning-card>
+</template>
