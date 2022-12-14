@@ -20,7 +20,7 @@ export default class CertificationCalculator extends LightningElement {
         if(this.showTemplate == 'PlatformDeveloper1') return PlatformDeveloper1;
         if(this.showTemplate == 'SelectorPage') return SelectorPage;
         if(this.showTemplate == 'PlatformDeveloper2') return PlatformDeveloper2;
-        if(this.showTemplate == 'Adminstrator') return Administrator;
+        if(this.showTemplate == 'Administrator') return Administrator;
     }
     showSelectorPage(){
         this.showTemplate = 'SelectorPage';
@@ -270,7 +270,7 @@ export default class CertificationCalculator extends LightningElement {
         const objectManagerAndLightningAppBuilderWeight = .2;
         const salesAndMarketingApplicationsWeight  = .12;
         const serviceAndSupportApplicationsWeight  = .11;
-        const productivityAndCollaborationWeight  = .7;
+        const productivityAndCollaborationWeight  = .07;
         const dataAndAnalyticsManagementWeight  = .14;
         const workflowProcessAutomationWeight =.16;
         const configurationAndSetupQuestionCount = 
@@ -309,7 +309,7 @@ export default class CertificationCalculator extends LightningElement {
             Math.round(this.objectManagerAndLightningAppBuilder / 100 * objectManagerAndLightningAppBuilderQuestionCount);
         let salesAndMarketingApplicationsCorrectCount = 
             Math.round(this.salesAndMarketingApplications / 100 * salesAndMarketingApplicationsQuestionCount);
-        let serviceAndSupportApplicationsCorrectCount = 0;
+        let serviceAndSupportApplicationsCorrectCount = 
             Math.round(this.serviceAndSupportApplications / 100 * serviceAndSupportApplicationsQuestionCount);
         let productivityAndCollaborationCorrectCount = 
             Math.round(this.productivityAndCollaboration / 100 * productivityAndCollaborationQuestionCount);
