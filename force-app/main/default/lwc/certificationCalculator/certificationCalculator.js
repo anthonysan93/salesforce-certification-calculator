@@ -6,6 +6,7 @@ import SelectorPage from './SelectorPage.html';
 import PlatformDeveloper2 from './PlatformDeveloper2.html';
 import Administrator from './Administrator.html';
 import Associate from './Associate.html';
+import AdvancedAdministrator from './AdvancedAdministrator.html';
 
 //Storage of Variables
 
@@ -23,6 +24,7 @@ export default class CertificationCalculator extends LightningElement {
         if(this.showTemplate == 'PlatformDeveloper2') return PlatformDeveloper2;
         if(this.showTemplate == 'Administrator') return Administrator;
         if(this.showTemplate == 'Associate') return Associate;
+        if(this.showTemplate == 'AdvancedAdministrator') return AdvancedAdministrator;
     }
     showSelectorPage(){
         this.showTemplate = 'SelectorPage';
@@ -40,6 +42,9 @@ export default class CertificationCalculator extends LightningElement {
     }
     showAssociate (){
         this.showTemplate = 'Associate'
+    }
+    showAdvancedAdministrator(){
+        this.showTemplate = 'AdvancedAdministrator';
     }
 
     
@@ -72,6 +77,15 @@ export default class CertificationCalculator extends LightningElement {
     navigation = 0;
     dataModel = 0;
     reportsAndDashboards = 0;
+    //Advanced Administrator
+    securityAndAccess = 0;
+    objectsAndApplications = 0;
+    auditingAndMonitoring = 0;
+    cloudApplications = 0;
+    dataAndAnalyticsManagementAdvanced = 0;
+    environmentManagementAndDeployment = 0;
+    processAutomation = 0;
+
 
 
 
@@ -141,6 +155,30 @@ export default class CertificationCalculator extends LightningElement {
     onReportsAndDashboardsChange (e){
         this.reportsAndDashboards = e.target.value;
     }
+    //Advanced Administrator
+    onSecurityAndAccessChange (e){
+        this.securityAndAccess = e.target.value;
+    }
+    onObjectsAndApplicationsChange(e){
+        this.objectsAndApplications = e.target.value;
+    }
+    onAuditingAndMonitoringChange(e){
+        this.auditingAndMonitoring = e.target.value;
+    }
+    onCloudApplicationsChange(e){
+        this.cloudApplications = e.target.value;
+    }
+    onDataAndAnalyticsManagementAdvancedChange(e){
+        this.dataAndAnalyticsManagementAdvanced = e.target.value;
+    }
+    onEnvironmentManagementAndDeploymentChange(e){
+        this.environmentManagementAndDeployment = e.target.value;
+    }
+    onProcessAutomationChange(e){
+        this.processAutomation = e.target.value;
+    }
+
+
 
 
     //This calculates the score based on const and inputted variables
@@ -182,10 +220,10 @@ export default class CertificationCalculator extends LightningElement {
         let testingDebuggingAndDeploymentCorrectCount = 
             Math.round(this.testingDebuggingAndDeployment / 100 * testingDebuggingAndDeploymentQuestionCount);
         let sectionBreakdown = 
-            `For Developer Fundamentals you got ${developerFundamentalsQuestionsCorrectCount} out of ${developerFunadmentalsQuestionsCount} correct.` + '\n' + 
-            `For Process Automation and Logic you got ${processAutomationAndLogicCorrectCount} out of ${processAutomationAndLogicQuestionCount} correct.` + '\n' +
-            `For User Interface you got ${userInterfaceCorrectCount} out of ${userInterfaceQuestionCount} correct.` + '\n' +
-            `For Testing Debugging and Deployment you got ${testingDebuggingAndDeploymentCorrectCount} out of ${testingDebuggingAndDeploymentQuestionCount} correct.`;
+            `For Developer Fundamentals, you got ${developerFundamentalsQuestionsCorrectCount} out of ${developerFunadmentalsQuestionsCount} correct.` + '\n' + 
+            `For Process Automation and Logic, you got ${processAutomationAndLogicCorrectCount} out of ${processAutomationAndLogicQuestionCount} correct.` + '\n' +
+            `For User Interface, you got ${userInterfaceCorrectCount} out of ${userInterfaceQuestionCount} correct.` + '\n' +
+            `For Testing Debugging and Deployment, you got ${testingDebuggingAndDeploymentCorrectCount} out of ${testingDebuggingAndDeploymentQuestionCount} correct.`;
 
         let score = developerFundamentalsScore + processAutomationAndLogicScore + userInterfaceScore + testingDebuggingAndDeploymentScore;
 
@@ -255,11 +293,11 @@ export default class CertificationCalculator extends LightningElement {
         let performanceCorrectCount = 
             Math.round(this.performance / 100 * performanceQuestionCount);
         let sectionBreakdown = 
-            `For Advanced Developer Fundamentals you got ${advancedDeveloperFundamentalsCorrectCount} out of ${advancedDeveloperFundamentalsQuestionCount} correct.` + '\n' + 
-            `For Process Automation, Logic and Integration you got ${processAutomationLogicAndIntegrationCorrectCount} out of ${processAutomationLogicAndIntegrationQuestionCount} correct.` + '\n' +
-            `For User Interface you got ${userInterface2CorrectCount} out of ${userInterface2QuestionCount} correct.` + '\n' +
-            `For Testing Debugging and Deployment you got ${testingDebuggingAndDeployment2CorrectCount} out of ${testingDebuggingAndDeployment2QuestionCount} correct.` + '\n' +
-            `For Performance you got ${performanceCorrectCount} out of ${performanceQuestionCount} correct.`;
+            `For Advanced Developer Fundamentals, you got ${advancedDeveloperFundamentalsCorrectCount} out of ${advancedDeveloperFundamentalsQuestionCount} correct.` + '\n' + 
+            `For Process Automation, Logic and Integration, you got ${processAutomationLogicAndIntegrationCorrectCount} out of ${processAutomationLogicAndIntegrationQuestionCount} correct.` + '\n' +
+            `For User Interface, you got ${userInterface2CorrectCount} out of ${userInterface2QuestionCount} correct.` + '\n' +
+            `For Testing Debugging and Deployment, you got ${testingDebuggingAndDeployment2CorrectCount} out of ${testingDebuggingAndDeployment2QuestionCount} correct.` + '\n' +
+            `For Performance, you got ${performanceCorrectCount} out of ${performanceQuestionCount} correct.`;
 
         let score = advancedDeveloperFundamentalsScore + processAutomationLogicAndIntegrationScore + userInterface2Score + testingDebuggingAndDeployment2Score + performanceScore;
         
@@ -283,7 +321,7 @@ export default class CertificationCalculator extends LightningElement {
                     this.scoreMessage = `Pass! Your overall score is ${score}`;
                     this.sectionQuestionCount = sectionBreakdown; 
                 }else{
-                    this.scoreMessage = `Fail your overall score was ${score}`;
+                    this.scoreMessage = `Fail, your overall score was ${score}`;
                     this.sectionQuestionCount = sectionBreakdown;
             }
         }
@@ -344,13 +382,13 @@ export default class CertificationCalculator extends LightningElement {
         let workflowProcessAutomationCorrectCount = 
             Math.round(this.workflowProcessAutomation / 100 * workflowProcessAutomationQuestionCount);
         let sectionBreakdown = 
-            `For Configuration and Setup you got ${configurationAndSetupCorrectCount} out of ${configurationAndSetupQuestionCount} correct.` + '\n' + 
-            `For Object Manager and Lightning App Builder you got ${objectManagerAndLightningAppBuilderCorrectCount} out of ${objectManagerAndLightningAppBuilderQuestionCount} correct.` + '\n' +
-            `For Sales and Marketing Applications you got ${salesAndMarketingApplicationsCorrectCount} out of ${salesAndMarketingApplicationsQuestionCount} correct.` + '\n' +
-            `For Service and Support Applications you got ${serviceAndSupportApplicationsCorrectCount} out of ${serviceAndSupportApplicationsQuestionCount} correct.` + '\n' +
-            `For Productivity and Collaboration you got ${productivityAndCollaborationCorrectCount} out of ${productivityAndCollaborationQuestionCount} correct.` + '\n' +
-            `For Data and Analytics Management you got ${dataAndAnalyticsManagementCorrectCount} out of ${dataAndAnalyticsManagementQuestionCount} correct.` + '\n' +
-            `For Workflow/Process Automation you got ${workflowProcessAutomationCorrectCount} out of ${workflowProcessAutomationQuestionCount} correct.`;
+            `For Configuration and Setup, you got ${configurationAndSetupCorrectCount} out of ${configurationAndSetupQuestionCount} correct.` + '\n' + 
+            `For Object Manager and Lightning App Builder, you got ${objectManagerAndLightningAppBuilderCorrectCount} out of ${objectManagerAndLightningAppBuilderQuestionCount} correct.` + '\n' +
+            `For Sales and Marketing Applications, you got ${salesAndMarketingApplicationsCorrectCount} out of ${salesAndMarketingApplicationsQuestionCount} correct.` + '\n' +
+            `For Service and Support Applications, you got ${serviceAndSupportApplicationsCorrectCount} out of ${serviceAndSupportApplicationsQuestionCount} correct.` + '\n' +
+            `For Productivity and Collaboration, you got ${productivityAndCollaborationCorrectCount} out of ${productivityAndCollaborationQuestionCount} correct.` + '\n' +
+            `For Data and Analytics Management, you got ${dataAndAnalyticsManagementCorrectCount} out of ${dataAndAnalyticsManagementQuestionCount} correct.` + '\n' +
+            `For Workflow/Process Automation, you got ${workflowProcessAutomationCorrectCount} out of ${workflowProcessAutomationQuestionCount} correct.`;
         let score =
             configurationAndSetupScore + objectManagerAndLightningAppBuilderScore + salesAndMarketingApplicationsScore + serviceAndSupportApplicationsScore +
             productivityAndCollaborationScore + dataAndAnalyticsManagementScore + workflowProcessAutomationScore;
@@ -379,7 +417,7 @@ export default class CertificationCalculator extends LightningElement {
                     this.scoreMessage = `Pass! Your overall score is ${score}`;
                     this.sectionQuestionCount = sectionBreakdown; 
                 }else{
-                    this.scoreMessage = `Fail your overall score was ${score}`;
+                    this.scoreMessage = `Fail, your overall score was ${score}`;
                     this.sectionQuestionCount = sectionBreakdown;
             }
         }
@@ -418,10 +456,10 @@ export default class CertificationCalculator extends LightningElement {
         let reportsAndDashboardsCorrectCount = 
             Math.round(this.reportsAndDashboards / 100 * reportsAndDashboardsQuestionCount);
         let sectionBreakdown = 
-            `For Salesforce Ecosystem you got ${salesforceEcosystemCorrectCount} out of ${salesforceEcosystemQuestionCount} correct.` + '\n' + 
-            `For Navigation you got ${navigationCorrectCount} out of ${navigationQuestionCount} correct.` + '\n' +
-            `For Data Model you got ${dataModelCorrectCount} out of ${dataModelQuestionCount} correct.` + '\n' +
-            `For Reports & Dashboards you got ${reportsAndDashboardsCorrectCount} out of ${reportsAndDashboardsQuestionCount} correct.`;
+            `For Salesforce Ecosystem, you got ${salesforceEcosystemCorrectCount} out of ${salesforceEcosystemQuestionCount} correct.` + '\n' + 
+            `For Navigation, you got ${navigationCorrectCount} out of ${navigationQuestionCount} correct.` + '\n' +
+            `For Data Model, you got ${dataModelCorrectCount} out of ${dataModelQuestionCount} correct.` + '\n' +
+            `For Reports & Dashboards, you got ${reportsAndDashboardsCorrectCount} out of ${reportsAndDashboardsQuestionCount} correct.`;
         let score =
             salesforceEcosystemScore + navigationScore + dataModelScore + reportsAndDashboardsScore;
 
@@ -443,7 +481,101 @@ export default class CertificationCalculator extends LightningElement {
                     this.scoreMessage = `Pass! Your overall score is ${score}`;
                     this.sectionQuestionCount = sectionBreakdown; 
                 }else{
-                    this.scoreMessage = `Fail your overall score was ${score}`;
+                    this.scoreMessage = `Fail, your overall score was ${score}`;
+                    this.sectionQuestionCount = sectionBreakdown;
+            }
+        }
+    }
+    //Calculated the Advanced Administrator Score
+    calculateScoreAdvancedAdministrator(){
+        //Variable Storage
+        const passingScore = 65;
+        const securityAndAccessWeight = .2;
+        const objectsAndApplicationsWeight = .19;
+        const auditingAndMonitoringWeight = .10;
+        const cloudApplicationsWeight = .11;
+        const dataAndAnalyticsManagementAdvancedWeight = .13;
+        const environmentManagementAndDeploymentWeight = .07;
+        const processAutomationWeight = .20;
+        const securityAndAccessQuestionCount = 
+            Math.round(questionCount * securityAndAccessWeight);
+        const objectsAndApplicationsQuestionCount = 
+            Math.round(questionCount * objectsAndApplicationsWeight);
+        const auditingAndMonitoringQuestionCount = 
+            Math.round(questionCount * auditingAndMonitoringWeight);
+        const cloudApplicationsQuestionCount = 
+            Math.round(questionCount * cloudApplicationsWeight);
+        const dataAndAnalyticsManagementAdvancedQuestionCount = 
+            Math.round(questionCount * dataAndAnalyticsManagementAdvancedWeight);
+        const environmentManagementAndDeploymentQuestionCount = 
+            Math.round(questionCount * environmentManagementAndDeploymentWeight);
+        const processAutomationQuestionCount = 
+            Math.round(questionCount * processAutomationWeight);
+        let securityAndAccessScore = 
+            Math.round(this.securityAndAccess * securityAndAccessWeight);
+        let objectsAndApplicationsScore = 
+            Math.round(this.objectsAndApplications * objectsAndApplicationsWeight);
+        let auditingAndMonitoringScore = 
+            Math.round(this.auditingAndMonitoring * auditingAndMonitoringWeight);
+        let cloudApplicationsScore = 
+            Math.round(this.cloudApplications * cloudApplicationsWeight);
+        let dataAndAnalyticsManagementAdvancedScore = 
+            Math.round(this.dataAndAnalyticsManagement * dataAndAnalyticsManagementAdvancedWeight);
+        let environmentManagementAndDeploymentScore = 
+            Math.round(this.environmentManagementAndDeployment * environmentManagementAndDeploymentWeight);
+        let processAutomationScore = 
+            Math.round(this.processAutomation * processAutomationWeight);
+        let securityAndAccessCorrectCount  =
+            Math.round(this.securityAndAccess / 100 * securityAndAccessQuestionCount);
+        let objectsAndApplicationsCorrectCount  = 
+            Math.round(this.objectsAndApplications / 100 * objectsAndApplicationsQuestionCount);
+        let auditingAndMonitoringCorrectCount  = 
+            Math.round(this.auditingAndMonitoring / 100 * auditingAndMonitoringQuestionCount);
+        let cloudApplicationsCorrectCount  = 
+            Math.round(this.cloudApplications / 100 * cloudApplicationsQuestionCount);
+        let dataAndAnalyticsManagementAdvancedCorrectCount =
+            Math.round(this.dataAndAnalyticsManagementAdvanced / 100 * dataAndAnalyticsManagementAdvancedQuestionCount);
+        let environmentManagementAndDeploymentCorrectCount  = 
+            Math.round(this.environmentManagementAndDeployment / 100 * environmentManagementAndDeploymentQuestionCount);
+        let processAutomationCorrectCount  = 
+            Math.round(this.processAutomation / 100 * processAutomationQuestionCount);
+        let sectionBreakdown = 
+            `For Security and Access, you got ${securityAndAccessCorrectCount} out of ${securityAndAccessQuestionCount} correct.` + '\n' + 
+            `For Objects and Applications, you got ${objectsAndApplicationsCorrectCount} out of ${objectsAndApplicationsQuestionCount} correct.` + '\n' +
+            `For Auditing and Monitoring, you got ${auditingAndMonitoringCorrectCount} out of ${auditingAndMonitoringQuestionCount} correct.` + '\n' +
+            `For Cloud Applications, you got ${cloudApplicationsCorrectCount} out of ${cloudApplicationsQuestionCount} correct.` + '\n' + 
+            `For Data and Analytics Management, you got ${dataAndAnalyticsManagementAdvancedCorrectCount} out of ${dataAndAnalyticsManagementAdvancedQuestionCount} correct.` + '\n' +
+            `For Environment Management and Deployment, you got ${environmentManagementAndDeploymentCorrectCount} out of ${environmentManagementAndDeploymentQuestionCount} correct.` + '\n' +
+            `For Process Automation, you got ${processAutomationCorrectCount} out of ${processAutomationQuestionCount} correct.`;
+        let score =
+            securityAndAccessScore + objectsAndApplicationsScore + auditingAndMonitoringScore + cloudApplicationsScore + 
+            dataAndAnalyticsManagementAdvancedScore + environmentManagementAndDeploymentScore + processAutomationScore;  
+
+    //This checks the score retrieved with the passing score and outputs a sentence. 
+        //This if statement checks for invalid values
+        if(this.securityAndAccess  > 100 ||
+            this.securityAndAccess  < 0 ||
+            this.objectsAndApplications  > 100 ||
+            this.objectsAndApplications  < 0 ||
+            this.auditingAndMonitoring  > 100 ||
+            this.auditingAndMonitoring  < 0 ||
+            this.cloudApplications  > 100 ||
+            this.cloudApplications  < 0 ||
+            this.dataAndAnalyticsManagementAdvanced  > 100 ||
+            this.dataAndAnalyticsManagementAdvanced  < 0 ||
+            this.environmentManagementAndDeployment  > 100 ||
+            this.environmentManagementAndDeployment  < 0 ||
+            this.processAutomation   > 100 ||
+            this.processAutomation   < 0 ){
+                this.scoreMessage = INVALID_MESSAGE;
+                this.sectionQuestionCount = INVALID_MESSAGE;
+            }else{
+                //This one checks if it is passing or failing and displays the appropriate score.
+                if (score >= passingScore) {
+                    this.scoreMessage = `Pass! Your overall score is ${score}`;
+                    this.sectionQuestionCount = sectionBreakdown; 
+                }else{
+                    this.scoreMessage = `Fail, your overall score was ${score}`;
                     this.sectionQuestionCount = sectionBreakdown;
             }
         }
