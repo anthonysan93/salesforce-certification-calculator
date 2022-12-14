@@ -5,12 +5,13 @@ import PlatformDeveloper1 from './PlatformDeveloper1.html';
 import SelectorPage from './SelectorPage.html';
 import PlatformDeveloper2 from './PlatformDeveloper2.html';
 import Administrator from './Administrator.html';
+import Associate from './Associate.html';
 
 //Storage of Variables
 
 const INVALID_MESSAGE = 'Please enter a valid value.';
 const NO_RESULTS = 'Awaiting Results...';
-const questionCount = 60;
+let questionCount = 60;
 
 export default class CertificationCalculator extends LightningElement {
     //Calculator Switch
@@ -21,6 +22,7 @@ export default class CertificationCalculator extends LightningElement {
         if(this.showTemplate == 'SelectorPage') return SelectorPage;
         if(this.showTemplate == 'PlatformDeveloper2') return PlatformDeveloper2;
         if(this.showTemplate == 'Administrator') return Administrator;
+        if(this.showTemplate == 'Associate') return Associate;
     }
     showSelectorPage(){
         this.showTemplate = 'SelectorPage';
@@ -36,6 +38,10 @@ export default class CertificationCalculator extends LightningElement {
     showAdministrator(){
         this.showTemplate = 'Administrator';
     }
+    showAssociate (){
+        this.showTemplate = 'Associate'
+    }
+
     
     
     //these are tracked values from the HTML
@@ -61,6 +67,12 @@ export default class CertificationCalculator extends LightningElement {
     productivityAndCollaboration = 0;
     dataAndAnalyticsManagement = 0;
     workflowProcessAutomation = 0;
+    //Associate
+    salesforceEcosystem = 0;
+    navigation = 0;
+    dataModel = 0;
+    reportsAndDashboards = 0;
+
 
 
     //Retrieves the number that is inputted for use in the back end
@@ -116,6 +128,20 @@ export default class CertificationCalculator extends LightningElement {
     onWorkflowProcessAutomationChange(e){
         this.workflowProcessAutomation = e.target.value;
     }
+    //Associate
+    onSalesforceEcosystemChange(e){
+        this.salesforceEcosystem = e.target.value;
+    }
+    onNavigationChange(e){
+        this.navigation = e.target.value;
+    }
+    onDataModelChange(e){
+        this.dataModel = e.target.value;
+    }
+    onReportsAndDashboardsChange (e){
+        this.reportsAndDashboards = e.target.value;
+    }
+
 
     //This calculates the score based on const and inputted variables
     //This calculates the score for Platform Developer 1
@@ -358,4 +384,69 @@ export default class CertificationCalculator extends LightningElement {
             }
         }
     }
+    //This calculates the score of the Associate exam
+    calculateScoreAssociate(){
+        //variable storage
+        const passingScore = 62;
+        questionCount = 40;
+        const salesforceEcosystemWeight = .32;
+        const navigationWeight =.28;
+        const dataModelWeight =.25;
+        const reportsAndDashboardsWeight =.15;
+        const salesforceEcosystemQuestionCount =
+            Math.round(questionCount * salesforceEcosystemWeight);
+        const navigationQuestionCount =
+            Math.round(questionCount * navigationWeight);
+        const dataModelQuestionCount =
+            Math.round(questionCount * dataModelWeight);
+        const reportsAndDashboardsQuestionCount =
+            Math.round(questionCount * reportsAndDashboardsWeight);
+        let salesforceEcosystemScore = 
+            Math.round(this.salesforceEcosystem * salesforceEcosystemWeight);
+        let navigationScore = 
+            Math.round(this.navigation * navigationWeight);
+        let dataModelScore =
+            Math.round(this.dataModel * dataModelWeight);
+        let reportsAndDashboardsScore = 
+            Math.round(this.reportsAndDashboards * reportsAndDashboardsWeight);
+        let salesforceEcosystemCorrectCount = 
+            Math.round(this.salesforceEcosystem / 100 * salesforceEcosystemQuestionCount);
+        let navigationCorrectCount = 
+            Math.round(this.navigation / 100 * navigationQuestionCount);
+        let dataModelCorrectCount = 
+            Math.round(this.dataModel / 100 * dataModelQuestionCount);
+        let reportsAndDashboardsCorrectCount = 
+            Math.round(this.reportsAndDashboards / 100 * reportsAndDashboardsQuestionCount);
+        let sectionBreakdown = 
+            `For Salesforce Ecosystem you got ${salesforceEcosystemCorrectCount} out of ${salesforceEcosystemQuestionCount} correct.` + '\n' + 
+            `For Navigation you got ${navigationCorrectCount} out of ${navigationQuestionCount} correct.` + '\n' +
+            `For Data Model you got ${dataModelCorrectCount} out of ${dataModelQuestionCount} correct.` + '\n' +
+            `For Reports & Dashboards you got ${reportsAndDashboardsCorrectCount} out of ${reportsAndDashboardsQuestionCount} correct.`;
+        let score =
+            salesforceEcosystemScore + navigationScore + dataModelScore + reportsAndDashboardsScore;
+
+        //This checks the score retrieved with the passing score and outputs a sentence. 
+        //This if statement checks for invalid values
+        if(this.salesforceEcosystem  > 100 ||
+            this.salesforceEcosystem  < 0 ||
+            this.navigation  > 100 ||
+            this.navigation  < 0 ||
+            this.dataModel  > 100 ||
+            this.dataModel  < 0 ||
+            this.reportsAndDashboards   > 100 ||
+            this.reportsAndDashboards   < 0 ){
+                this.scoreMessage = INVALID_MESSAGE;
+                this.sectionQuestionCount = INVALID_MESSAGE;
+            }else{
+                //This one checks if it is passing or failing and displays the appropriate score.
+                if (score >= passingScore) {
+                    this.scoreMessage = `Pass! Your overall score is ${score}`;
+                    this.sectionQuestionCount = sectionBreakdown; 
+                }else{
+                    this.scoreMessage = `Fail your overall score was ${score}`;
+                    this.sectionQuestionCount = sectionBreakdown;
+            }
+        }
+    }
 }
+

@@ -1,0 +1,70 @@
+<template>
+	<lightning-card title="Salesforce Certification Calculator">
+	<lightning-button 			slot="actions" 
+								label="Main Page"
+								onclick={showSelectorPage}
+								variant="destructive-text">		
+	</lightning-button>
+	<lightning-card title="Associate">
+		<lightning-button 		label="Calculate" 
+								slot="actions" 
+								onclick={calculateScoreAssociate}>
+		</lightning-button>
+		<p class="slds-var-p-horizontal_small">Use this to calculate your Associate exam score</p>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Salesforce Ecosystem" 
+								maxlength="3" 
+								value={salesforceEcosystem}
+								max='100'
+								min="0"
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onSalesforceEcosystemChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Navigation" 
+								maxlength="3" 
+								value={navigation}
+								max='100'
+								min="0"
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onNavigationChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Data Model" 
+								maxlength="3" 
+								value={dataModel}
+								max='100'
+								min="0"
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onDataModelChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Reports & Dashboards" 
+								maxlength="3" 
+								value={reportsAndDashboards}
+								max='100'
+								min="0"
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onReportsAndDashboardsChange}>
+			</lightning-input>
+		</div>
+		<lightning-textarea 	name="scoreMessage"
+								slot="footer" 
+								readonly value={scoreMessage}
+								label="Score Message">
+		</lightning-textarea>
+		<lightning-textarea 	name="sectionQuestionCount"
+								slot="footer" 
+								readonly value={sectionQuestionCount}
+								label="Section Breakdown">
+		</lightning-textarea>
+	</lightning-card>
+</lightning-card>
+</template>
