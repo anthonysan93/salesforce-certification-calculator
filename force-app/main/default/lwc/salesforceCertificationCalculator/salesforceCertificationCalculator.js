@@ -8,40 +8,23 @@ let questionCount = 60;
 
 export default class SalesforceCertificationCalculator extends LightningElement {
 
-platformDeveloper1 = [
-    {
-        section : 'Developer Fundamentals', weight : .23, passingScore : 69
-    },{
-        section : 'Process Automation And Logic', weight : .30
-    },{
-        section : 'User Interface', weight : .25
-    },{
-        section: 'Testing Debugging And Deployment', weight : .22
-    }];
-platformDeveloper2 = [
-    {
-        section : "Advanced Developer Fundamentals", weight : .15, passingScore : 70
-    },{
-        section : 'Process, Automation, Logic, And Integration', weight : .27
-    },{
-        section : 'User Interface', weight : .20
-    },{
-        section : 'Testing Debugging And Deployment', weight : .20
-    },{
-        section : 'Performance', weight: .18
-    }];
-platformAppBuilder = [
-    {
-        section : 'Salesforce Fundamentals', weight : .23, passingScore : 63
-    },{
-        section : 'Data Modeling and Management', weight : .22
-    },{
-        section : 'Business Logic and Process Automation', weight : .28
-    },{
-        section : 'App Deployment', weight : .10
+test = {
+    'platformDeveloper1' : {
+        section : ['Developer Fundamentals', 'Process Automation And Logic', 'User Interface','Testing Debugging And Deployment'],
+        weight : [.23, .30, .25, .22],
+        passingScore :69
+    },
+    'platformDeveloper2' : {
+        section : ["Advanced Developer Fundamentals",'Process, Automation, Logic, And Integration','User Interface','Testing Debugging And Deployment','Performance'],
+        weight : [.15,.27,.20,.20,.18],
+        passingScore :70
+    },
+    'platformAppBuilder' : {
+        section : ['Salesforce Fundamentals','Data Modeling and Management','Business Logic and Process Automation','User Interface','App Deployment'],
+        weight : [.23,.22,.28,.17,.10],
+        passingScore :63
     }
-]
-
+}
     value = 'Select a value';
 
     get options() {
@@ -54,9 +37,13 @@ platformAppBuilder = [
 
     handleChange(event) {
         this.value = event.detail.value;
-        this.exams = this[event.detail.value];
-    console.log(this.exams[0].passingScore); //Gets the passing score from the list for calculations later
-    console.log(this.exams[0].weight);
+        const examData = this.test[event.detail.value];
+        this.exams = examData.section.map((section, index) => ({
+            section,
+            weight: examData.weight[index],
+        }));
+    console.log(examData.passingScore); //Gets the passing score from the list for calculations later
+    console.log(examData.weight);
 
     }
 }
