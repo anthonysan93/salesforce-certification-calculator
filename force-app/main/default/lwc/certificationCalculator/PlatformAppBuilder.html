@@ -6,56 +6,69 @@
 								variant="destructive-text"
 								>		
 	</lightning-button>
-	<lightning-card title="Platform Developer 1">
+	<lightning-card title="Platform App Builder">
 		<lightning-button 		label="Calculate" 
 								slot="actions" 
-								onclick={calculateScorePlatformDeveloper1}>
+								onclick={calculateScorePlatformAppBuilder}>
 		</lightning-button>
-		<p class="slds-var-p-horizontal_small">Use this to calculate your PD1 score</p>
+		<p class="slds-var-p-horizontal_small">Use this to calculate your Platform App Builder score</p>
 		<div class="slds-var-p-around_x-small lgc-bg">
 			<lightning-input 	type="number" 
-								label="Developer Fundamentals" 
+								label="Salesforce Fundamentals" 
 								maxlength="3" 
-								value={developerFundamentals}
+								value={salesforceFundamentals}
 								max='100'
 								min="0"
 								message-when-range-overflow='Please enter between 1-100'
-								onchange={onDeveloperFundamentalsChange}>
+								onchange={onSalesforceFundamentalsChange}>
 			</lightning-input>
 		</div>
 		<div class="slds-var-p-around_x-small lgc-bg">
 			<lightning-input 	type="number" 
-								label="Process Automation and Logic" 
+								label="Data Modeling and Management" 
 								maxlength="3" 
-								value={processAutomationAndLogic}
+								value={dataModelingAndManagement}
 								max='100'
 								min="0"
 								message-when-range-overflow='Please enter between 1-100'
-								onchange={onProcessAutomationAndLogicChange}>
+								onchange={onDataModelingAndManagementChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Business Logic and Process Automation" 
+								maxlength="3" 
+								value={businessLogicAndProcessAutomation}
+								max='100'
+								min="0"
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onBusinessLogicAndProcessAutomationChange}>
 			</lightning-input>
 		</div>
 		<div class="slds-var-p-around_x-small lgc-bg">
 			<lightning-input 	type="number" 
 								label="User Interface" 
 								maxlength="3" 
-								value={userInterface}
+								value={userInterfacePab}
 								max='100'
 								min="0"
 								message-when-range-overflow='Please enter between 1-100'
-								onchange={onUserInterfaceChange}>
+								onchange={onUserInterfacePabChange}>
 			</lightning-input>
 		</div>
 		<div class="slds-var-p-around_x-small lgc-bg">
 			<lightning-input 	type="number" 
-								label="Testing, Debugging, and Deployment" 
+								label="App Deployment" 
 								maxlength="3" 
-								value={testingDebuggingAndDeployment}
+								value={appDeployment}
 								max='100'
 								min="0"
 								message-when-range-overflow='Please enter between 1-100'
-								onchange={onTestingDebuggingAndDeploymentChange}>
+								onchange={onAppDeploymentChange}>
 			</lightning-input>
 		</div>
+		
+		
 		<lightning-textarea 	name="scoreMessage"
 								slot="footer" 
 								readonly value={scoreMessage}
