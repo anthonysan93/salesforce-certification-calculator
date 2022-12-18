@@ -168,7 +168,7 @@ test = {
     }
     calculateScore(){
         let totalScore = 0;
-        for(let i = 0; i< examData.score.length; i++){
+        for(let i = 0; i < examData.score.length; i++){
             let sectionScore = 
             Math.round(examData.score[i] * examData.weight[i]);
             totalScore += sectionScore;
@@ -177,9 +177,9 @@ test = {
         if(totalScore > 100 || totalScore < 0){
             this.scoreMessage = INVALID_MESSAGE;
         }else if(totalScore >= examData.passingScore){
-            this.scoreMessage = `Pass! Your overall score is ${totalScore}`;
+            this.scoreMessage = `Pass! Your overall score is ${totalScore}%`;
         }else{
-            this.scoreMessage = `Fail your overall score was ${totalScore}`;
+            this.scoreMessage = `Unfortunately, you failed, your score is ${totalScore}%`;
         }
     }
 }
