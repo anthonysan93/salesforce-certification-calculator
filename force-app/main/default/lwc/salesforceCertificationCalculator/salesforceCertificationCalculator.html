@@ -1,17 +1,27 @@
 <template>
 	<lightning-card title="Salesforce Certification Calculator">
 	<lightning-button 			slot="actions" 
-								label="Main Page"
-								onclick={showSelectorPage}
+								label="Calculate"
+								onclick={calculateScore}
 								variant="destructive-text">		
 	</lightning-button>
 		<lightning-combobox
-				name="progress"
-				label="Which Exam?"
+			name="whichRole"
+			label="Which Role?"
+			value={role}
+			placeholder="Select A Role"
+			options={roleOptions}
+			onchange={handleRoleChange}>
+		</lightning-combobox>
+		<lightning-combobox
+				name="examSelect"
+				label="Select Exam"
+				options={examOptions}
 				value={value}
-				placeholder="Select An Exam"
-				options={options}
-				onchange={handleChange} >
+				placeholder="Select an Exam"
+				onchange={handleChange}
+				if:true={showExams}
+				spinneractive=true>
 		</lightning-combobox>
 		<div class="slds-var-p-around_x-small lgc-bg">
 			<template for:each={exams} for:item="exa">
@@ -20,7 +30,9 @@
 					label={exa.section}
 					type="number"
 					max='100'
-					min="0">
+					min="0"
+					onchange={handleScoreChange}
+					if:true={showQuestions}>
 				</lightning-input>
 			</template>
 		</div>
